@@ -2,3 +2,5 @@
 name = "ramfiller"
 version = "1.0.0"
 edition = "2015"
+license = "MIT"
+description = "Very quickly fill a desired amount of RAM"
