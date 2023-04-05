@@ -1,7 +1,4 @@
-use std::{
-    io::{stdin, Write},
-    mem,
-};
+use std::{io::stdin, mem};
 
 use clap::Parser;
 use rayon::prelude::*;
@@ -32,11 +29,7 @@ fn main() {
 
     println!("\nYour RAM has been filled :)");
 
-    // Wait until the user is ready to clear memory
-    let mut stdout = std::io::stdout();
-
-    print!("Press Enter to clear memory");
-    stdout.flush().unwrap();
+    println!("Press Enter to clear memory");
     let mut str = String::new();
     stdin().read_line(&mut str).unwrap();
 
