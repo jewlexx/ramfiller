@@ -7,3 +7,5 @@ description = "Very quickly fill a desired amount of RAM"
 
 [dependencies]
 clap = { version = "4.2.1", features = ["derive"] }
+indicatif = { version = "0.17.3", features = ["rayon"] }
+rayon = "1.7.0"
