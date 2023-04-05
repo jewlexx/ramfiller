@@ -1,6 +1,7 @@
 use std::{io::stdin, mem};
 
 use clap::Parser;
+use indicatif::{ParallelProgressIterator, ProgressBar};
 use rayon::prelude::*;
 
 #[derive(Debug, Parser)]
@@ -25,7 +26,11 @@ fn main() {
 
     // Create an empty vector, allowing us to push new `Filler`s into memory
     let vec = vec![(); max_el];
-    let filled: Vec<Filler> = vec.into_par_iter().map(|_| Filler::default()).collect();
+    let filled: Vec<Filler> = vec
+        .into_par_iter()
+        .progress_with(ProgressBar::new(max_el as u64))
+        .map(|_| Filler::default())
+        .collect();
 
     println!("\nYour RAM has been filled :)");
 
