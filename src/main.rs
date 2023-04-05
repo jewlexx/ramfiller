@@ -3,6 +3,14 @@ use std::{
     mem,
 };
 
+use clap::Parser;
+
+#[derive(Debug, Parser)]
+struct Args {
+    #[clap(help = "The number of megabytes to allocate")]
+    megabytes: usize,
+}
+
 // 64 Bytes in total
 #[allow(dead_code)]
 #[derive(Debug, Default)]
