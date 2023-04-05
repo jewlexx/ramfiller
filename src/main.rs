@@ -31,18 +31,10 @@ fn fill_mem(max_el: usize, vec: &mut Vec<Filler>) {
 }
 
 fn main() {
+    let args = Args::parse();
     let max_el = {
-        print!("Please enter the amount on memory you would like to fill (megabytes): ");
-        stdout().flush().unwrap();
-        let mut megabytes = String::new();
-        stdin().read_line(&mut megabytes).unwrap();
-        megabytes.pop();
-
-        // Converts megabytes input to `usize` type
-        let megabytes = megabytes.parse::<usize>().unwrap();
-
         // Convert megabytes to bytes
-        let bytes = megabytes * 1024 * 1024;
+        let bytes = args.megabytes * 1024 * 1024;
 
         bytes / mem::size_of::<Filler>()
     };
