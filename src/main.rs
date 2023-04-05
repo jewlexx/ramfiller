@@ -32,7 +32,7 @@ fn main() {
         .map(|_| Filler::default())
         .collect();
 
-    println!("\nYour RAM has been filled :)");
+    println!("Your RAM has been filled :)");
 
     println!("Press Enter to clear memory");
     let mut str = String::new();
