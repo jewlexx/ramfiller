@@ -3,36 +3,21 @@ use std::{
     mem,
 };
 
+// 64 Bytes in total
 #[allow(dead_code)]
-struct Filler {
-    // 32 Bytes in total
-    a: f64,
-    b: f64,
-    c: f64,
-    d: f64,
-}
-
-impl Filler {
-    pub fn new() -> Self {
-        Filler {
-            a: 1.0,
-            b: 1.0,
-            c: 1.0,
-            d: 1.0,
-        }
-    }
-}
+#[derive(Debug, Default)]
+struct Filler(u128, u128, u128, u128);
 
 fn fill_mem(max_el: usize, vec: &mut Vec<Filler>) {
     let mut stdout = std::io::stdout();
 
     for i in 0..10 {
-        print!("\rFilling {}% RAM", (i + 1) * 10);
+        write!(stdout, "\rFilling {}% RAM", (i + 1) * 10).unwrap();
         stdout.flush().unwrap();
 
         for _ in 0..(max_el / 10) {
             // Initializes 32 bytes of memory and pushes it into memory
-            vec.push(Filler::new());
+            vec.push(Filler::default());
         }
     }
 }
@@ -48,7 +33,7 @@ fn main() {
         // Converts megabytes input to `usize` type
         let megabytes = megabytes.parse::<usize>().unwrap();
 
-        // Exactly 1 Gigabyte of memory
+        // Convert megabytes to bytes
         let bytes = megabytes * 1024 * 1024;
 
         bytes / mem::size_of::<Filler>()
@@ -70,7 +55,7 @@ fn main() {
         stdin().read_line(&mut str).unwrap();
     }
 
-    // Clear memory instantly
+    // Clear memory "instantly"
     drop(vec);
 
     println!("\nMemory Cleared...");
