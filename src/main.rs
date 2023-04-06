@@ -41,5 +41,5 @@ fn main() {
     // Clear memory "instantly"
     drop(filled);
 
-    println!("\nMemory Cleared...");
+    println!("Memory Cleared...");
 }
